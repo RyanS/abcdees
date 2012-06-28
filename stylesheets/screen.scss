@@ -1,11 +1,64 @@
+@import "compass/css3";
 //
 // Application Stylesheet
 //
 body {
   background-color: #f2f2f2;
+  color: #333;
   font-family: Helvetica, sans-serif;
   margin: 0;
   padding: 0
+}
+
+#configure {
+  background: rgba(0,0,5,.85);
+  left: 0;
+  position: absolute;
+  top: 0;
+  height: 40px;
+  width: 100%;
+  z-index: 5;
+  @include single-transition(transform, .25s, ease-in);
+  @include translateY(-40px);  
+
+  &.down {
+    @include translateY(0px);  
+
+     #handle #grab span {
+      @include rotate(0deg);
+    }
+  }
+
+  button {
+    margin: 10px;
+  }
+
+  #handle {
+    left: 0px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    #grab {
+      font-size: 18px;
+      line-height: 20px;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      background: rgba(0,0,5,.85);
+      margin: 0 auto;
+      margin-bottom: -20px;
+      height: 20px;
+      width: 40px;
+      @include border-bottom-radius(5px);
+
+      span {
+        display: block;
+        @include rotate(180deg);
+
+      }
+    }
+  }
 }
 
 #main {
@@ -20,7 +73,14 @@ body {
   li {
     float: left;
     outline: 1px solid #f9f9f9;
+    position: relative;
     //overflow: hidden;
     text-align: center;
+
+    &.selected {
+      background-color: #FFE;
+      outline: 1px solid #71BFFF;
+      z-index: 2
+    }
   }
 }

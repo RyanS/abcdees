@@ -4,8 +4,17 @@
     %meta{:charset => "utf-8"}
     %meta{:name => "viewport", :content => "width=device-width, user-scalable=no"}
     %title= @title
+    %script{:src => "/javascripts/modernizr.min.js", :type => "text/javascript"}
     %link{:href => "/stylesheets/screen.css", :rel => "stylesheet"}
   %body
+    #configure
+      %button#shuffle Shuffle letters!
+      #handle
+        #grab
+          %span
+            &#8963;
+      
+
     #main
     %footer
     %script{:src => "/javascripts/zepto.js", :type => "text/javascript" }

@@ -50,6 +50,25 @@ setupLetters()
 setupGrid()
 
 $(window).on('orientationchange', setupGrid)
-$(document.body).on('doubleTap', randomizeLetters)
+
+selected = ''
+
+app = {}
+
+app.Events =
+  down: if Modernizr.touch then "touchstart" else "mousedown"
+  up:   if Modernizr.touch then "touchend"   else "mouseup"
+  move: if Modernizr.touch then "touchmove"  else "mousemove"
+
+$(document.body).on(app.Events.down, 'li', () ->
+  selected.removeClass('selected') if selected
+  selected = $(this).addClass('selected')
+).on('touchmove', (e) -> e.preventDefault())
+
+$('#shuffle').on(app.Events.down, randomizeLetters)
+$('#grab').on(app.Events.down, ->
+  $('#configure').toggleClass('down')
+)
+
 
   
