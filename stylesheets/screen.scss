@@ -1,4 +1,5 @@
 @import "compass/css3";
+@import "compass/css3/user-interface";
 //
 // Application Stylesheet
 //
@@ -71,16 +72,26 @@ body {
     text-transform: capitalize;
   }
   li {
+    cursor: pointer;
     float: left;
     outline: 1px solid #f9f9f9;
     position: relative;
     //overflow: hidden;
     text-align: center;
+    @include user-select('none');
+    @include transition-property(background-color);
+
+    &.fade {
+      @include transition-duration(.75s);
+    }
 
     &.selected {
-      background-color: #FFE;
+      @include transition-duration(0);
+      //background-color: #FFE;
+      background-color: #B7F4B7;
       outline: 1px solid #71BFFF;
-      z-index: 2
+      z-index: 2;
+      @include single-box-shadow(rgba(0,0,0,.25),0,0,5px,2px);
     }
   }
 }

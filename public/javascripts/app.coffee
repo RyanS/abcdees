@@ -1,3 +1,4 @@
+app = {}
 numOfBoxes = 26
 $main = $('#main')
 letterCodes = [97..122]
@@ -35,9 +36,12 @@ setupGrid = ->
   columns = Math.floor innerWidth/width
   rows = Math.ceil numOfBoxes/columns
 
-  #i think it save to assume that 'z' will always fall below the fold so fix that
+  #i think it safe to assume that 'z' will always fall below the fold so fix that
   columns += 1
   width = Math.floor(innerWidth/columns)
+
+  app.height = height
+  app.width  = width
 
   $letters.css(
     width: "#{width}px"
@@ -45,30 +49,49 @@ setupGrid = ->
     'font-size': "#{if horizontal then height else width}px"
     'line-height': "#{height}px"
   )
+  
+  app.grid = []
+  rowPos = 0
+  $letters.each((i) ->
+    app.grid[rowPos] = [] if i%columns is 0
+    app.grid[rowPos][i%columns] = $(this)
+    rowPos += 1 if i%columns is columns - 1
+  )
 
 setupLetters()
 setupGrid()
 
 $(window).on('orientationchange', setupGrid)
 
-selected = ''
+$selected = ''
 
-app = {}
 
 app.Events =
   down: if Modernizr.touch then "touchstart" else "mousedown"
   up:   if Modernizr.touch then "touchend"   else "mouseup"
   move: if Modernizr.touch then "touchmove"  else "mousemove"
 
-$(document.body).on(app.Events.down, 'li', () ->
-  selected.removeClass('selected') if selected
-  selected = $(this).addClass('selected')
-).on('touchmove', (e) -> e.preventDefault())
+selectElement = (e) ->
+  e = e.touches[0] if Modernizr.touch
+  $el = app.grid[Math.floor(e.pageY/app.height)][Math.floor(e.pageX/app.width)]
+  return if $el is $selected
+  $selected.removeClass('selected').addClass('fade') if $selected
+  $selected = $el.addClass('selected')
+
+$(document.body).
+  on(app.Events.down, 'li', selectElement).
+  on('touchmove', 'li', selectElement).
+  on('touchmove', (e) -> e.preventDefault())
 
 $('#shuffle').on(app.Events.down, randomizeLetters)
 $('#grab').on(app.Events.down, ->
   $('#configure').toggleClass('down')
 )
+
+$('#font').on 'change', ->
+  $(document.body).css('font-family', $(this).val())
+  
+
 
 
   

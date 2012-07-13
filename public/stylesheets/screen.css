@@ -85,13 +85,34 @@ body {
   text-transform: capitalize;
 }
 #main li {
+  cursor: pointer;
   float: left;
   outline: 1px solid #f9f9f9;
   position: relative;
   text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -webkit-transition-property: background-color;
+  -moz-transition-property: background-color;
+  -o-transition-property: background-color;
+  transition-property: background-color;
+}
+#main li.fade {
+  -webkit-transition-duration: 0.75s;
+  -moz-transition-duration: 0.75s;
+  -o-transition-duration: 0.75s;
+  transition-duration: 0.75s;
 }
 #main li.selected {
-  background-color: #FFE;
+  -webkit-transition-duration: 0;
+  -moz-transition-duration: 0;
+  -o-transition-duration: 0;
+  transition-duration: 0;
+  background-color: #B7F4B7;
   outline: 1px solid #71BFFF;
   z-index: 2;
+  -webkit-box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.25);
 }
