@@ -6,72 +6,41 @@ body {
   padding: 0;
 }
 
-#configure {
-  background: rgba(0, 0, 5, 0.85);
-  left: 0;
+#config {
+  right: 0;
   position: absolute;
-  top: 0;
-  height: 40px;
-  width: 100%;
-  z-index: 5;
-  -webkit-transition: -webkit-transform 0.25s ease-in;
-  -moz-transition: -moz-transform 0.25s ease-in;
-  -o-transition: -o-transform 0.25s ease-in;
-  transition: transform 0.25s ease-in;
-  -webkit-transform: translateY(-40px);
-  -moz-transform: translateY(-40px);
-  -ms-transform: translateY(-40px);
-  -o-transform: translateY(-40px);
-  transform: translateY(-40px);
-}
-#configure.down {
-  -webkit-transform: translateY(0px);
-  -moz-transform: translateY(0px);
-  -ms-transform: translateY(0px);
-  -o-transform: translateY(0px);
-  transform: translateY(0px);
-}
-#configure.down #handle #grab span {
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -ms-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  transform: rotate(0deg);
-}
-#configure button {
-  margin: 10px;
-}
-#configure #handle {
-  left: 0px;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-#configure #handle #grab {
-  font-size: 18px;
-  line-height: 20px;
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  background: rgba(0, 0, 5, 0.85);
+  bottom: 50px;
+  z-index: 6;
+  background: rgba(0, 0, 0, 0.95);
+  -moz-border-radius-topleft: 10px;
+  -webkit-border-top-left-radius: 10px;
+  border-top-left-radius: 10px;
+  -moz-border-radius-bottomleft: 10px;
+  -webkit-border-bottom-left-radius: 10px;
+  border-bottom-left-radius: 10px;
   margin: 0 auto;
-  margin-bottom: -20px;
-  height: 20px;
-  width: 40px;
-  -moz-border-radius-bottomleft: 5px;
-  -webkit-border-bottom-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  -moz-border-radius-bottomright: 5px;
-  -webkit-border-bottom-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  -webkit-transform: translateX(220px);
+  -moz-transform: translateX(220px);
+  -ms-transform: translateX(220px);
+  -o-transform: translateX(220px);
+  transform: translateX(220px);
+  -webkit-transition: -webkit-transform 0.5s;
+  -moz-transition: -moz-transform 0.5s;
+  -o-transition: -o-transform 0.5s;
+  transition: transform 0.5s;
+  padding: 10px;
+  width: 200px;
 }
-#configure #handle #grab span {
+#config.visible {
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transform: translateX(0);
+}
+#config button, #config select {
   display: block;
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
-  transform: rotate(180deg);
+  margin: 10px 0;
 }
 
 #main {
@@ -115,4 +84,17 @@ body {
   -webkit-box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.25);
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.25);
+}
+
+#launch_config {
+  -webkit-background-size: 32px;
+  -moz-background-size: 32px;
+  -o-background-size: 32px;
+  background-size: 32px;
+  height: 32px;
+  right: 10px;
+  position: absolute;
+  bottom: 10px;
+  background: url('../images/gear.png?1342459507') no-repeat;
+  width: 32px;
 }

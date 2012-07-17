@@ -8,57 +8,29 @@ body {
   color: #333;
   font-family: Helvetica, sans-serif;
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
-#configure {
-  background: rgba(0,0,5,.85);
-  left: 0;
+#config {
+  right: 0;
   position: absolute;
-  top: 0;
-  height: 40px;
-  width: 100%;
-  z-index: 5;
-  @include single-transition(transform, .25s, ease-in);
-  @include translateY(-40px);  
+  bottom: 50px;
+  z-index: 6;
+  background: rgba(0,0,0,.95);
+  @include border-left-radius(10px);
+  margin: 0 auto;
+  @include translateX(220px);
+  @include single-transition(transform, .5s);
+  padding: 10px;
+  width: 200px;
 
-  &.down {
-    @include translateY(0px);  
-
-     #handle #grab span {
-      @include rotate(0deg);
-    }
+  &.visible {
+    @include translateX(0) 
   }
 
-  button {
-    margin: 10px;
-  }
-
-  #handle {
-    left: 0px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-
-    #grab {
-      font-size: 18px;
-      line-height: 20px;
-      color: white;
-      font-weight: bold;
-      text-align: center;
-      background: rgba(0,0,5,.85);
-      margin: 0 auto;
-      margin-bottom: -20px;
-      height: 20px;
-      width: 40px;
-      @include border-bottom-radius(5px);
-
-      span {
-        display: block;
-        @include rotate(180deg);
-
-      }
-    }
+  button, select {
+    display: block;
+    margin: 10px 0; 
   }
 }
 
@@ -94,4 +66,14 @@ body {
       @include single-box-shadow(rgba(0,0,0,.25),0,0,5px,2px);
     }
   }
+}
+
+#launch_config {
+  @include background-size(32px);
+  height: 32px;
+  right: 10px;
+  position: absolute;
+  bottom: 10px;
+  background: image-url('gear.png') no-repeat;
+  width: 32px
 }

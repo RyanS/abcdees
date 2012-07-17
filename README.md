@@ -85,3 +85,4 @@ Learning More
 You can learn more about Serve on the GitHub project page:
 
 <http://github.com/jlong/serve>
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Abcdees</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/RyanS/abcdees" property="cc:attributionName" rel="cc:attributionURL">Ryan Szulczewski</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.

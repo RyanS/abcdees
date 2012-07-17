@@ -9,8 +9,8 @@ randomizeLetters = ->
   if i is 0 then return false
 
   while --i
-      j = Math.floor(Math.random() * (i+1))
-      [arr[i], arr[j]] = [arr[j], arr[i]] # use pattern matching to swap
+    j = Math.floor(Math.random() * (i+1))
+    [arr[i], arr[j]] = [arr[j], arr[i]] # use pattern matching to swap
 
   $('ul').remove()
   setupLetters()
@@ -80,13 +80,16 @@ selectElement = (e) ->
 
 $(document.body).
   on(app.Events.down, 'li', selectElement).
-  on('touchmove', 'li', selectElement).
-  on('touchmove', (e) -> e.preventDefault())
+  on('touchmove', 'li', selectElement)
+
+#prevent rubber band scrolling
+$(document).on('touchmove', (e) -> e.preventDefault())
+
+$config = $('#config')
+$('#launch_config').on(app.Events.down, -> $config.toggleClass('visible'))
 
 $('#shuffle').on(app.Events.down, randomizeLetters)
-$('#grab').on(app.Events.down, ->
-  $('#configure').toggleClass('down')
-)
+
 
 $('#font').on 'change', ->
   $(document.body).css('font-family', $(this).val())
