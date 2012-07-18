@@ -16,16 +16,21 @@ body {
   position: absolute;
   bottom: 50px;
   z-index: 6;
-  background: rgba(0,0,0,.95);
-  @include border-left-radius(10px);
-  margin: 0 auto;
-  @include translateX(220px);
-  @include single-transition(transform, .5s);
-  padding: 10px;
-  width: 200px;
+  overflow: hidden;
+
+  .wrapper {
+    @include border-left-radius(10px);
+    background: rgba(0,0,0,.95);
+    padding: 10px;
+    @include translateX(220px);
+    @include single-transition(transform, .5s);
+    width: 200px;
+  }
 
   &.visible {
-    @include translateX(0) 
+    .wrapper {
+      @include translateX(0) 
+    }
   }
 
   button, select {

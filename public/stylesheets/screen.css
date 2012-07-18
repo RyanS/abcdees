@@ -11,14 +11,17 @@ body {
   position: absolute;
   bottom: 50px;
   z-index: 6;
-  background: rgba(0, 0, 0, 0.95);
+  overflow: hidden;
+}
+#config .wrapper {
   -moz-border-radius-topleft: 10px;
   -webkit-border-top-left-radius: 10px;
   border-top-left-radius: 10px;
   -moz-border-radius-bottomleft: 10px;
   -webkit-border-bottom-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  margin: 0 auto;
+  background: rgba(0, 0, 0, 0.95);
+  padding: 10px;
   -webkit-transform: translateX(220px);
   -moz-transform: translateX(220px);
   -ms-transform: translateX(220px);
@@ -28,10 +31,9 @@ body {
   -moz-transition: -moz-transform 0.5s;
   -o-transition: -o-transform 0.5s;
   transition: transform 0.5s;
-  padding: 10px;
   width: 200px;
 }
-#config.visible {
+#config.visible .wrapper {
   -webkit-transform: translateX(0);
   -moz-transform: translateX(0);
   -ms-transform: translateX(0);
