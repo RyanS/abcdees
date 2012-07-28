@@ -123,34 +123,6 @@ $('#reset').on(app.Events.down, resetLetters)
 
 $('#font').on 'change', ->
   app.$db.css('font-family', $(@).val())
-
-#$dragging = null
-#setupDragBox = (e) ->
-  #e = e.touches[0] if Modernizr.touch
-  #$dragging = $(@)
-  #$dragging.addClass('dragging')
-  #app.$container.addClass('dragging')
-  #app.$db.append($dragging)
-  #$dragging.css('-webkit-transform', "translate(#{e.pageX-app.width/2}px, #{e.pageY-app.height/2}px)")
-  #app.$db.on("#{app.Events.move}.dragging", dragBox)
-
-#dragBox = (e) ->
-  #e = e.touches[0] if Modernizr.touch
-  #$dragging.css('-webkit-transform', "translate(#{e.pageX-app.width/2}px, #{e.pageY-app.height/2}px)")
-
-
-#okToDrag = 0
-#app.$db.on(app.Events.down, '#container div', (e) ->
-  #$dragging = null
-  #okToDrag = setTimeout((=> setupDragBox.call(@, e)), 500)
-#).on(app.Events.up, ->
-  #app.$db.off('.dragging')
-  #if ($dragging)
-    #$dragging.removeClass('dragging')
-    #app.$container.removeClass('dragging')
-    #$dragging.css('-webkit-transform', '')
-  #clearTimeout(okToDrag)
-#)
   
 
 
