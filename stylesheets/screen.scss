@@ -41,35 +41,44 @@ body {
 
 #main {
   margin: 0 auto;
-  ul {
+  #container {
     float: left;
-    list-style: none;
     margin: 0;
     padding: 0;
-    text-transform: capitalize;
+
+    &.dragging div {
+      @include transition-property(transform);
+    }
   }
-  li {
-    cursor: pointer;
-    float: left;
-    outline: 1px solid #f9f9f9;
-    position: relative;
-    //overflow: hidden;
-    text-align: center;
-    @include user-select('none');
-    @include transition-property(background-color);
+}
 
-    &.fade {
-      @include transition-duration(.75s);
-    }
+.grid-box {
+  cursor: pointer;
+  float: left;
+  text-transform: capitalize;
+  outline: 1px solid #f9f9f9;
+  position: relative;
+  //overflow: hidden;
+  text-align: center;
+  @include user-select('none');
+  @include transition-property(background-color);
 
-    &.selected {
-      @include transition-duration(0);
-      //background-color: #FFE;
-      background-color: #B7F4B7;
-      outline: 1px solid #71BFFF;
-      z-index: 2;
-      @include single-box-shadow(rgba(0,0,0,.25),0,0,5px,2px);
-    }
+  &.fade {
+    @include transition-duration(.75s);
+  }
+
+  &.selected {
+    @include transition-duration(0);
+    //background-color: #FFE;
+    background-color: #B7F4B7;
+    outline: 1px solid #71BFFF;
+    z-index: 2;
+    @include single-box-shadow(rgba(0,0,0,.5),0,0,5px,2px);
+  }
+
+  &.dragging {
+    position: absolute;      
+    @include single-box-shadow(rgba(0,0,0,.25),6px,6px,5px,2px);
   }
 }
 

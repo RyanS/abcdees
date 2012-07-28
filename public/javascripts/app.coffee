@@ -1,4 +1,4 @@
-app = {}
+window.app = {}
 numOfBoxes = 26
 $main = $('#main')
 letterCodes = [97..122]
@@ -12,18 +12,20 @@ randomizeLetters = ->
     j = Math.floor(Math.random() * (i+1))
     [arr[i], arr[j]] = [arr[j], arr[i]] # use pattern matching to swap
 
-  app.$ul.remove()
-  setupLetters()
-  setupGrid()
+  init()
+
+resetLetters = ->
+  letterCodes = [97..122]
+  init()
 
 setupLetters = ->
-  app.$ul = $('<ul/>')
-  app.$ul.append("<li><span>&\##{letter.toString()}</span></li>") for letter in letterCodes
+  app.$container = $('<div id="container"/>')
+  app.$container.append("<div class='grid-box'><span>&\##{letter.toString()}</span></div>") for letter in letterCodes
 
-  $main.append(app.$ul)
+  $main.append(app.$container)
 
 setupGrid = ->
-  $letters = $main.find('li')
+  $letters = app.$container.children()
   horizontal = innerWidth > innerHeight
   totalArea = innerWidth * innerHeight
   area = totalArea/numOfBoxes
@@ -54,18 +56,22 @@ setupGrid = ->
   rowPos = 0
   $letters.each((i) ->
     app.grid[rowPos] = [] if i%columns is 0
-    app.grid[rowPos][i%columns] = $(this)
+    app.grid[rowPos][i%columns] = $(@)
     rowPos += 1 if i%columns is columns - 1
   )
 
-setupLetters()
-setupGrid()
+init = ->
+  app.$container?.remove()
+  setupLetters()
+  setupGrid()
+
+init()
 
 #Ganked from http://underscorejs.org/docs/underscore.html#section-58
 debounce = (func, wait, immediate) ->
     timeout = null
     ->
-      context = this
+      context = @
       args = arguments
       later = ->
         timeout = null
@@ -86,18 +92,25 @@ app.Events =
   up:   if Modernizr.touch then "touchend"   else "mouseup"
   move: if Modernizr.touch then "touchmove"  else "mousemove"
 
+gridIndex = (x, y) ->
+  [Math.floor(y/app.height), Math.floor(x/app.width)]
+
+locateLetter = (x, y) ->
+  gi = gridIndex(x,y)
+  app.grid[gi[0]][gi[1]]
+
 $selected = ''
 selectElement = (e) ->
   e = e.touches[0] if Modernizr.touch
-  $el = app.grid[Math.floor(e.pageY/app.height)][Math.floor(e.pageX/app.width)]
+  $el = locateLetter(e.pageX, e.pageY)
   return if $el is $selected
   $selected.removeClass('selected').addClass('fade') if $selected
   $selected = $el.addClass('selected')
 
 app.$db = $(document.body)
 app.$db.
-  on(app.Events.down, 'li', selectElement).
-  on('touchmove', 'li', selectElement)
+  on(app.Events.down, '#container div', selectElement).
+  on('touchmove.finding', '#container div', selectElement)
 
 #prevent rubber band scrolling
 $(document).on('touchmove', (e) -> e.preventDefault())
@@ -106,10 +119,39 @@ $config = $('#config')
 $('#launch_config').on(app.Events.down, -> $config.toggleClass('visible'))
 
 $('#shuffle').on(app.Events.down, randomizeLetters)
+$('#reset').on(app.Events.down, resetLetters)
 
 $('#font').on 'change', ->
-  app.$db.css('font-family', $(this).val())
+  app.$db.css('font-family', $(@).val())
 
+#$dragging = null
+#setupDragBox = (e) ->
+  #e = e.touches[0] if Modernizr.touch
+  #$dragging = $(@)
+  #$dragging.addClass('dragging')
+  #app.$container.addClass('dragging')
+  #app.$db.append($dragging)
+  #$dragging.css('-webkit-transform', "translate(#{e.pageX-app.width/2}px, #{e.pageY-app.height/2}px)")
+  #app.$db.on("#{app.Events.move}.dragging", dragBox)
+
+#dragBox = (e) ->
+  #e = e.touches[0] if Modernizr.touch
+  #$dragging.css('-webkit-transform', "translate(#{e.pageX-app.width/2}px, #{e.pageY-app.height/2}px)")
+
+
+#okToDrag = 0
+#app.$db.on(app.Events.down, '#container div', (e) ->
+  #$dragging = null
+  #okToDrag = setTimeout((=> setupDragBox.call(@, e)), 500)
+#).on(app.Events.up, ->
+  #app.$db.off('.dragging')
+  #if ($dragging)
+    #$dragging.removeClass('dragging')
+    #app.$container.removeClass('dragging')
+    #$dragging.css('-webkit-transform', '')
+  #clearTimeout(okToDrag)
+#)
+  
 
 
 
