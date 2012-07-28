@@ -1,13 +1,8 @@
 What is this?
 =============
 
-This is a simple HTML prototype written in HAML or ERB that is designed to be
-viewed with Serve.
-
-What is Serve? Serve is an open-source rapid prototyping framework for Web
-applications. It makes it easy to prototype functionality without writing a
-single line of backend code.
-
+This is what I am using to teach my child their letters. Meant to be used on a mobile device (mainly iPad) but should work on any resolution device.
+You can see it in action here: <http://abcdees.herokuapp.com>. Developed with serve.
 
 How do I install and run Serve?
 -------------------------------
@@ -85,4 +80,6 @@ Learning More
 You can learn more about Serve on the GitHub project page:
 
 <http://github.com/jlong/serve>
+
+I really don't know anything about licenses but just in case I threw this on here:
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/3.0/80x15.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Abcdees</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/RyanS/abcdees" property="cc:attributionName" rel="cc:attributionURL">Ryan Szulczewski</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
